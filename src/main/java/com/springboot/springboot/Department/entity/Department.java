@@ -1,4 +1,4 @@
-package com.springboot.springboot.entities;
+package com.springboot.springboot.Department.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

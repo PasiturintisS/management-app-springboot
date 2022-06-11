@@ -1,6 +1,6 @@
-package com.springboot.springboot.repositories;
+package com.springboot.springboot.Department.repository;
 
-import com.springboot.springboot.entities.Department;
+import com.springboot.springboot.Department.entity.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
