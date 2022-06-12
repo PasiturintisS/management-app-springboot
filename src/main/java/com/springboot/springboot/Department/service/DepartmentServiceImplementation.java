@@ -62,5 +62,16 @@ public class DepartmentServiceImplementation implements DepartmentService {
         return departmentRepo.save(depDB);
     }
 
+    // case sensitive
+    @Override
+    public Department getDepartmentByName(String departmentName) {
+        return departmentRepo.findByDepartmentName(departmentName);
+    }
+
+    // ignore case
+    @Override
+    public Department getDepartmentByNameIgnoreCase(String departmentName) {
+        return departmentRepo.findByDepartmentNameIgnoreCase(departmentName);
+    }
 
 }
