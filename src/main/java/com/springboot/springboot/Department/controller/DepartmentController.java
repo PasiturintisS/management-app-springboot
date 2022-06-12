@@ -2,26 +2,37 @@ package com.springboot.springboot.Department.controller;
 
 import com.springboot.springboot.Department.entity.Department;
 import com.springboot.springboot.Department.service.DepartmentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 public class DepartmentController {
 
     private DepartmentService departmentService;
+    // naudojant slf4j Logger
+    // daugiau informacijos apie loggeri rasi cia:
+    // https://docs.spring.io/spring-boot/docs/2.1.18.RELEASE/reference/html/boot-features-logging.html
+    private final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
 
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
     }
 
+
     @PostMapping("/departments")
-    public Department saveDepartment(@RequestBody Department department){
+    public Department saveDepartment(@Valid @RequestBody Department department){
+        // @Valid nurodo kad tures atitikti nurodytas anotacijas/criterijus kad butu isaugomas departamentas
+        LOGGER.info("Inside saveDepartment of DepartmentController");
         return departmentService.saveDepartment(department);
     }
 
     @GetMapping("/departments")
     public List<Department> getDepartmentList(){
+        LOGGER.info("Inside getDepartmentList of DepartmentController");
         return departmentService.getDepartmentList();
     }
 
