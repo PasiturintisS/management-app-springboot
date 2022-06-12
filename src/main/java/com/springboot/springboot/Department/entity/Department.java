@@ -1,9 +1,13 @@
-package com.springboot.springboot.entities;
+package com.springboot.springboot.Department.entity;
+
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Department {
@@ -11,6 +15,10 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long departmentId;
+    // surasomas anotacijos/kriterijai kuriuos tures atitikti departmentName laukas
+    // daugiau informacijos apie hibernate validatoriu rasi cia:
+    // https://bushansirgur.in/spring-boot-validation-using-hibernate-validator/
+    @NotBlank(message = "Please add department name !")
     private String departmentName;
     private String departmentAddress;
     private String getDepartmentCode;
