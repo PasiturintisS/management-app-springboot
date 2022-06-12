@@ -1,5 +1,9 @@
 package com.springboot.springboot.Department.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
@@ -10,6 +14,15 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+// implementuoja builder pattern daugiau info apie pattern rasi cia:
+// Java builder
+// https://howtodoinjava.com/design-patterns/creational/builder-pattern-in-java/
+// Lombok builder
+// https://howtodoinjava.com/lombok/lombok-builder-annotation/
+@Builder
 public class Department {
 
     @Id
@@ -22,56 +35,4 @@ public class Department {
     private String departmentName;
     private String departmentAddress;
     private String getDepartmentCode;
-
-    public Department() {
-    }
-
-    public Department(Long departmentId, String departmentName, String departmentAddress, String getDepartmentCode) {
-        this.departmentId = departmentId;
-        this.departmentName = departmentName;
-        this.departmentAddress = departmentAddress;
-        this.getDepartmentCode = getDepartmentCode;
-    }
-
-    public Long getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
-
-    public String getDepartmentAddress() {
-        return departmentAddress;
-    }
-
-    public void setDepartmentAddress(String departmentAddress) {
-        this.departmentAddress = departmentAddress;
-    }
-
-    public String getGetDepartmentCode() {
-        return getDepartmentCode;
-    }
-
-    public void setGetDepartmentCode(String getDepartmentCode) {
-        this.getDepartmentCode = getDepartmentCode;
-    }
-
-    @Override
-    public String toString() {
-        return "Department{" +
-                "departmentId=" + departmentId +
-                ", departmentName='" + departmentName + '\'' +
-                ", departmentAddress='" + departmentAddress + '\'' +
-                ", getDepartmentCode='" + getDepartmentCode + '\'' +
-                '}';
-    }
 }
