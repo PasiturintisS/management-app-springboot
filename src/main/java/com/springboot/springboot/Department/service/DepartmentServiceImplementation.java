@@ -73,5 +73,4 @@ public class DepartmentServiceImplementation implements DepartmentService {
     public Department getDepartmentByNameIgnoreCase(String departmentName) {
         return departmentRepo.findByDepartmentNameIgnoreCase(departmentName);
     }
-
 }
