@@ -40,4 +40,17 @@ public class DepartmentController {
     public Department updateDepartment(@PathVariable("id") Long departmentid, @RequestBody Department department){
         return departmentService.updateDepartment(departmentid, department);
     }
+
+    @GetMapping("/departments/name/{name}")
+    public Department getDepartmentByName(@PathVariable("name") String departmentName) {
+        // DepartmentRepo interfeise sukurtas metodas findByDepartmentName(String departmentName) nereikia aprasyti
+        // papildomos logikos jei norima kaska surasti is @Entity objekto uztenka  findBy<vienas is enticio lauku vardu>
+        // ir spring bootas duos pagal varda rezultatus tik po findBy turi buti tokiu paciu pavadinimu kaip laukai entity
+        // objekte. Veikia ir sukitais JPARepository metodais. pavadinimas turi tiksliai atitikti pavadinima to ko ieskom.
+
+        // Daugiau info ir galimus metodus rasi cia:
+        // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods
+        // 5. Reference Documentation -> 5.1.3 Query Methods -> Query Creation
+        return departmentService.getDepartmentByNameIgnoreCase(departmentName);
+    }
 }
