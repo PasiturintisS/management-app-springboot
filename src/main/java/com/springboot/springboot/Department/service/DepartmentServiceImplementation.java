@@ -1,11 +1,13 @@
 package com.springboot.springboot.Department.service;
 
 import com.springboot.springboot.Department.entity.Department;
+import com.springboot.springboot.Department.exceptionhandling.DepartmentNotFoundException;
 import com.springboot.springboot.Department.repository.DepartmentRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class DepartmentServiceImplementation implements DepartmentService {
@@ -27,18 +29,23 @@ public class DepartmentServiceImplementation implements DepartmentService {
     }
 
     @Override
-    public Department getDepartmentById(Long departmentid) {
-        return departmentRepo.findById(departmentid).get();
+    public Department getDepartmentById(Long departmentId) throws DepartmentNotFoundException {
+        Optional<Department> department = departmentRepo.findById(departmentId);
+        if(!department.isPresent()){
+            throw new DepartmentNotFoundException("Department don't exists !");
+        }
+
+        return department.get();
     }
 
     @Override
-    public void deleteDepartmentById(Long departmentid) {
-        departmentRepo.deleteById(departmentid);
+    public void deleteDepartmentById(Long departmentId) {
+        departmentRepo.deleteById(departmentId);
     }
 
     @Override
-    public Department updateDepartment(Long departmentid, Department department) {
-        Department depDB = departmentRepo.findById(departmentid).get();
+    public Department updateDepartment(Long departmentId, Department department) {
+        Department depDB = departmentRepo.findById(departmentId).get();
 
         boolean checkName = Objects.nonNull(department.getDepartmentName()) &&
                 !"".equalsIgnoreCase(department.getDepartmentName());

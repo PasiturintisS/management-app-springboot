@@ -1,6 +1,7 @@
 package com.springboot.springboot.Department.controller;
 
 import com.springboot.springboot.Department.entity.Department;
+import com.springboot.springboot.Department.exceptionhandling.DepartmentNotFoundException;
 import com.springboot.springboot.Department.service.DepartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,19 +38,19 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/{id}")
-    public Department getDepartmentById(@PathVariable("id") Long departmentid){
-        return departmentService.getDepartmentById(departmentid);
+    public Department getDepartmentById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
+        return departmentService.getDepartmentById(departmentId);
     }
 
     @DeleteMapping("/departments/{id}")
-    public String deleteDepartmentById(@PathVariable("id") Long departmentid){
-        departmentService.deleteDepartmentById(departmentid);
+    public String deleteDepartmentById(@PathVariable("id") Long departmentId){
+        departmentService.deleteDepartmentById(departmentId);
         return "Department Deleted Successfully";
     }
 
     @PutMapping("/departments/{id}")
-    public Department updateDepartment(@PathVariable("id") Long departmentid, @RequestBody Department department){
-        return departmentService.updateDepartment(departmentid, department);
+    public Department updateDepartment(@PathVariable("id") Long departmentId, @RequestBody Department department){
+        return departmentService.updateDepartment(departmentId, department);
     }
 
     @GetMapping("/departments/name/{name}")
